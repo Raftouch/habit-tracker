@@ -28,6 +28,6 @@ const habitSlice = createSlice({
   },
 });
 
-export const {} = habitSlice.actions;
+export const { addHabit } = habitSlice.actions;
 
 export default habitSlice.reducer;
