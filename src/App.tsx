@@ -1,5 +1,11 @@
+import AddHabitForm from "./components/Form";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <AddHabitForm />
+    </>
+  );
 }
 
 export default App;
