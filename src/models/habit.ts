@@ -1,7 +1,7 @@
-export interface Habit {
+import type { Payload } from "./payload";
+
+export interface Habit extends Payload {
   id: string;
-  name: string;
-  frequency: "daily" | "weekly";
   completed: string[];
   createdAt: string;
 }
