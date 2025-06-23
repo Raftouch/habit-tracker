@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import type { AddDispatch } from "../store/store";
+import { addHabit } from "../store/habit-slice";
 
 export default function AddHabitForm() {
   const [name, setName] = useState<string>("");
   const [frequency, setFrequency] = useState<"daily" | "weekly">("daily");
+
+  const dispatch = useDispatch<AddDispatch>();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -14,6 +19,11 @@ export default function AddHabitForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (name.trim()) {
+      dispatch(addHabit({ name, frequency }));
+      setName("");
+    }
   };
 
   return (
