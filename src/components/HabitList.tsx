@@ -1,8 +1,10 @@
-import { useSelector } from "react-redux";
-import type { RootState } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AddDispatch, RootState } from "../store/store";
+import { toggleHabit } from "../store/habit-slice";
 
 export default function HabitList() {
   const habits = useSelector((state: RootState) => state.habit.habits);
+  const dispatch = useDispatch<AddDispatch>();
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -32,6 +34,9 @@ export default function HabitList() {
                     ? "bg-green-500 hover:bg-green-600"
                     : "bg-blue-500 hover:bg-blue-600"
                 }`}
+                onClick={() =>
+                  dispatch(toggleHabit({ id: habit.id, date: today }))
+                }
               >
                 {habit.completed.includes(today)
                   ? "Completed"

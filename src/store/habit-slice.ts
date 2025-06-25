@@ -25,9 +25,25 @@ const habitSlice = createSlice({
 
       state.habits.push(habit);
     },
+    toggleHabit: (
+      state,
+      action: PayloadAction<{ id: string; date: string }>
+    ) => {
+      const habit = state.habits.find(
+        (habit) => habit.id === action.payload.id
+      );
+      if (habit) {
+        const index = habit.completed.indexOf(action.payload.date);
+        if (index > -1) {
+          habit.completed.splice(index, 1);
+        } else {
+          habit.completed.push(action.payload.date);
+        }
+      }
+    },
   },
 });
 
-export const { addHabit } = habitSlice.actions;
+export const { addHabit, toggleHabit } = habitSlice.actions;
 
 export default habitSlice.reducer;
