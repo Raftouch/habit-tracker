@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AddDispatch, RootState } from "../store/store";
-import { toggleHabit } from "../store/habit-slice";
+import { removeHabit, toggleHabit } from "../store/habit-slice";
 
 export default function HabitList() {
   const habits = useSelector((state: RootState) => state.habit.habits);
@@ -43,7 +43,10 @@ export default function HabitList() {
                   : "Mark Complete"}
               </button>
 
-              <button className="px-3 py-1 rounded text-sm bg-red-500 hover:bg-red-600 text-white transition-colors cursor-pointer">
+              <button
+                onClick={() => dispatch(removeHabit({ id: habit.id }))}
+                className="px-3 py-1 rounded text-sm bg-red-500 hover:bg-red-600 text-white transition-colors cursor-pointer"
+              >
                 Remove
               </button>
             </div>
